@@ -1,0 +1,67 @@
+# Python
+
+**pycache**/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+
+# Jupyter
+
+.ipynb_checkpoints/
+
+
+# Environments
+
+.env
+.venv/
+venv/
+env/
+ENV/
+
+
+# Conda
+
+*.conda
+
+
+# IDE / OS
+
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+
+# External data (DO NOT TRACK)
+
+external/*
+!external/.gitkeep
+
+
+# Model weights / large ML files
+
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.onnx
+
+
+# Caches (HuggingFace, etc.)
+
+.cache/
+huggingface/
+**/.cache/
+
+
+# Logs
+
+*.log
