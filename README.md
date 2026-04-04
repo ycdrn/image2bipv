@@ -1,8 +1,14 @@
-# image2bipv
+## An automated pipeline for facade solar retrofits using 3D reconstruction and generative image editing 
 
-**“An automated pipeline for facade solar retrofits utilizing 3D reconstruction and diffusion models”** [under review]
+[Ayca Duran](https://systems.arch.ethz.ch/ayca-duran), [Christoph Waibel](https://systems.arch.ethz.ch/christoph-waibel), [Bernd Bickel](https://berndbickel.com/about-me),  [Iro Armeni](https://ir0.github.io), [Arno Schlueter](https://systems.arch.ethz.ch/arno-schlueter)
 
-This repository contains the pipeline that enables automated analysis of facades and visualization of building-integrated photovoltaics (BIPV) facade retrofits from street-level imagery. It combines feed-forward 3D reconstruction, vision-language models (VLMs), and diffusion-based image editing to estimate facade geometry, generate retrofit designs, and evaluate energy potential.
+[[ Paper ]](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5988643) [under review]
+
+<p align="center">
+  <img src="assets/overview_img.png" alt="Preview" width="400">
+</p>
+
+This repository contains the pipeline that enables automated analysis of facades and visualization of building-integrated photovoltaics (BIPV) facade retrofits from street-level imagery. It combines feed-forward 3D reconstruction, vision-language models (VLMs), and generative image editing to estimate facade geometry, visualize retrofit designs, and evaluate energy potential.
 
 ---
 
@@ -49,7 +55,7 @@ facade2dim/
 1. Clone repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/ycdrn/image2bipv.git
 cd image2bipv
 ```
 
@@ -96,9 +102,9 @@ Place your local clone under:
 external/geocalib/
 ```
 
-**GeoCalib**:
-Automated BIPV layout generation relies on a fine-tuned Segformer model. Download the ckpt from [HuggingFace](https://huggingface.co/aycaduran/cmp_segformer). 
-Place the ckpt under:
+**Segformer**:
+Automated BIPV layout generation relies on a fine-tuned Segformer model. Details of fine-tuning and layout generation are available in [segment4pvlayout](https://github.com/ycdrn/segment4pvlayout). Download the checkpoint from [HuggingFace](https://huggingface.co/aycaduran/cmp_segformer). 
+Place the checkpoint under:
 ```text
 external/segformer/
 ```
@@ -106,7 +112,7 @@ external/segformer/
 
 ## Notes
 
-The notebooks were developed and tested in conda environments using GPU acceleration. Below are recommended:
+The notebooks were developed and tested in conda environments using GPU acceleration. The following are recommended:
 
 - NVIDIA GPU with CUDA support
 - compatible PyTorch + CUDA installation
@@ -120,7 +126,7 @@ Tested software stack includes the following for Geometry/Generation environment
 
 
 ## Citation
-If using our pipeline, please cite us as follows:
+If you use this pipeline, please cite:
 ```bibtex
 @article{duran2025image2bipv,
   title   = {An Automated Pipeline for Facade Solar Retrofits Utilizing 3D Reconstruction and Diffusion Models},
