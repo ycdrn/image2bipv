@@ -1,8 +1,8 @@
-## An automated pipeline for facade solar retrofits using 3D reconstruction and generative image editing 
+## Automated facade solar retrofits using feedforward 3D reconstruction and generative image editing 
 
-[Ayca Duran](https://systems.arch.ethz.ch/ayca-duran), [Christoph Waibel](https://systems.arch.ethz.ch/christoph-waibel), [Bernd Bickel](https://berndbickel.com/about-me),  [Iro Armeni](https://ir0.github.io), [Arno Schlueter](https://systems.arch.ethz.ch/arno-schlueter)
+[Ayca Duran](https://systems.arch.ethz.ch/ayca-duran), [Christoph Waibel](https://systems.arch.ethz.ch/christoph-waibel), [Bernd Bickel](https://berndbickel.com/about-me), [Iro Armeni](https://ir0.github.io), [Arno Schlueter](https://systems.arch.ethz.ch/arno-schlueter)
 
-[[ Paper ]](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5988643) [under review]
+[[ Paper ]](https://doi.org/10.1016/j.autcon.2026.107294) – Automation in Construction
 
 <p align="center">
   <img src="assets/overview_img.png" alt="Preview" width="400">
