@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+
+  <!-- PAGE METADATA — edit the browser title and search description here. -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="image2bipv: an automated pipeline for facade solar retrofits using 3D reconstruction and generative image editing."
+    >
+    <meta name="theme-color" content="#ffffff">
+    <title>Automated facade solar retrofits using feed-forward 3D reconstruction and generative image editing | image2bipv</title>
+    <link rel="icon" href="assets/favicon.svg">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <!-- NAVIGATION — section links and repository link. -->
+    <header class="nav">
+      <a class="brand" href="#"><span class="mark">▦</span> image<span>2</span>bipv</a>
+      <nav aria-label="Main navigation">
+        <a href="#abstract">Abstract</a>
+        <a href="#method">Methodology</a>
+        <a href="#examples">Results</a>
+        <a href="https://github.com/ycdrn/image2bipv">Code ↗</a>
+      </nav>
+    </header>
+    <main>
+
+      <!-- HERO — paper title, publication status, authors, and main links. -->
+      <section class="hero" id="overview">
+        <h1>Automated facade solar retrofits using <br> feed-forward 3D reconstruction and <br> generative image editing</h1>
+
+        <!-- AUTHORS — edit names and profile URLs here. -->
+        <div class="authors">
+          <a href="https://aycaduran.com/">Ayça Duran</a>
+          <span>·</span>
+          <a href="https://www.linkedin.com/in/christoph-waibel-19205114b/">Christoph Waibel</a>
+          <span>·</span>
+          <a href="https://berndbickel.com/">Bernd Bickel</a>
+          <span>·</span>
+          <a href="https://ir0.github.io/">Iro Armeni</a>
+          <span>·</span>
+          <a href="https://systems.arch.ethz.ch/arno-schlueter">Arno Schlueter</a>
+        </div>
+
+        <p class="publication">
+          <a href="https://doi.org/10.1016/j.autcon.2026.107294">Automation in Construction</a>
+          <span>Volume 193 · Article 107294 · January 2027</span>
+        </p>
+
+        <!-- PAPER LINKS — published article, source code, and qualitative examples. -->
+        <div class="actions">
+          <a class="button primary" href="https://doi.org/10.1016/j.autcon.2026.107294">
+            <img class="button-icon" src="assets/icon-paper.svg" alt="" width="17" height="17">
+            <span>Paper</span>
+          </a>
+          <a class="button" href="https://github.com/ycdrn/image2bipv">
+            <img class="button-icon" src="assets/icon-code.svg" alt="" width="17" height="17">
+            <span>Code</span>
+          </a>
+          <a class="button" href="#examples">
+            <img class="button-icon" src="assets/icon-examples.svg" alt="" width="17" height="17">
+            <span>Examples</span>
+          </a>
+        </div>
+
+        <!-- FACADE COMPARISON — image paths and captions. Keep IDs for the slider script. -->
+        <figure class="hero-figure">
+          <div class="compare" id="comparison">
+            <img
+              id="hero-original"
+              src="assets/examples/1122_2/151359_0_v1.jpg"
+              alt="Original street-level photograph of facade 151359_0_v1"
+              width="480"
+              height="480"
+            >
+            <div class="after">
+              <img
+                id="hero-retrofit"
+                src="assets/examples/1122_2/151359_0_v1_automatic_generated_perspective.png"
+                alt="Automatic layout retrofit of facade 151359_0_v1"
+                width="480"
+                height="480"
+              >
+            </div>
+            <span class="image-label left">Original facade</span>
+            <span class="image-label right" id="hero-retrofit-label">Automatic layout</span>
+            <div class="divider">
+              <span>‹ ›</span>
+            </div>
+          </div>
+          <div class="hero-coverage" role="group" aria-label="Comparison coverage">
+            <button class="button coverage-button" data-hero-coverage="full" aria-pressed="false">Full coverage</button>
+            <button class="button coverage-button" data-hero-coverage="automatic" aria-pressed="true">Automatic layout</button>
+            <button class="button coverage-button" data-hero-coverage="low" aria-pressed="false">Low coverage</button>
+          </div>
+          <div class="compare-controls">
+            <label for="reveal">Compare the facade</label>
+            <input
+              id="reveal"
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              aria-label="Reveal the generated retrofit"
+            >
+            <span>Drag to explore ↔</span>
+          </div>
+        </figure>
+      </section>
+
+      <!-- FINAL ABSTRACT — accepted manuscript text, without LaTeX revision markup. -->
+      <section class="paper-abstract section" id="abstract" aria-labelledby="abstract-title">
+        <h2 id="abstract-title">Abstract</h2>
+        <div class="prose">
+          <p>
+            Building-integrated photovoltaics (BIPV) enable solar energy generation from
+            facades, yet facade retrofit assessment remains largely manual and
+            time-consuming. This paper introduces a pipeline for automated analysis and
+            visualization of BIPV retrofit designs. Unlike prior studies relying on
+            building footprints, 3D models, or camera parameters, the proposed method
+            automatically estimates facade aspect ratios and dimensions from images using
+            feed-forward 3D reconstruction and vision-language models. The pipeline edits
+            facade images using pretrained generative models to visualize BIPV retrofits
+            considering system size and provides preliminary energy-yield estimates. On
+            two datasets covering facades from 10 cities, the best-performing
+            configurations achieved normalized mean absolute errors of 9% and 15% in
+            aspect-ratio estimation and an average floor-count prediction error of 0.5
+            floors. The pipeline enables scalable evaluation of early-stage facade solar
+            retrofit designs, supporting decision-making in retrofit planning by reducing
+            reliance on manual surveying and modeling. The pipeline implementation and
+            dataset are available to support future work.
+          </p>
+        </div>
+      </section>
+
+      <!-- METHOD — two figures from the paper, with cleaned manuscript captions. -->
+      <section class="section method" id="method">
+        <h2>Methodology</h2>
+        <p class="intro">The proposed methodology integrates image-based geometry estimation, metric scale prediction, generative editing, and energy-yield estimation.</p>
+        <figure class="method-figure">
+          <h3>Step 1: Geometry reconstruction and rectification</h3>
+          <a href="assets/method/method_1_upp.png" target="_blank" rel="noopener" aria-label="Open method step 1 figure at full size">
+            <img src="assets/method/method_1_upp.png" alt="Pipeline diagram showing facade reconstruction, masking, plane isolation, gravity alignment, dimension estimation, and rectification." loading="lazy">
+          </a>
+          <figcaption>
+            First step of the pipeline for generating scale-aware, orthorectified images. Input
+            image(s) are used to generate a 3D point cloud through feed-forward 3D
+            reconstruction (a). The facade mask (b) is used to mask the scene (c) and isolate
+            the facade plane (d). The gravity vector (e) aligns the facade with the ground
+            plane (f), and the axis-aligned bounding box (AABB) determines the aspect ratio
+            (g). Inverse mapping and scaling (h) generate the rectified image, while
+            vision-language models estimate the facade width and height (i).
+          </figcaption>
+        </figure>
+
+        <figure class="method-figure">
+          <h3>Step 2: Retrofit generation and energy estimation</h3>
+          <a href="assets/method/method_2_upp.png" target="_blank" rel="noopener" aria-label="Open method step 2 figure at full size">
+            <img src="assets/method/method_2_upp.png" alt="Pipeline diagram showing module layout selection, PV masking, generative image editing, reprojection, and energy estimation." loading="lazy">
+          </a>
+          <figcaption>
+            Second step of the pipeline: generative image editing for facade solar retrofits.
+            The scale-aware, rectified image generated in Step 1 and the module layout,
+            provided by the user or automatically generated using a segmentation model, are
+            used to generate a PV mask (a). The PV mask and a PV texture based on the module
+            specifications are then used to edit the input image (b). Using the camera
+            parameters predicted in Step 1, the generated image is reprojected onto the
+            original scene (c). Integration with Sonnenfassade enables the estimation of
+            quantitative key performance indicators (KPIs) (d).
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- RETROFIT EXAMPLES — facade images, coverage options, and energy illustration. -->
+      <section class="section examples" id="examples">
+        <div class="examples-header">
+          <div>
+            <h2>Results</h2>
+          </div>
+          <p>
+            Examples of generated BIPV retrofit designs for four building categories.
+            Select a coverage strategy, image view, and facade example to compare the outputs.
+          </p>
+        </div>
+        <!-- EXAMPLE GALLERY — category codes and coverage labels can be edited below.
+             Image paths are listed in gallery-data.js. -->
+        <div class="gallery-controls">
+          <div>
+            <label for="building-category">Building category</label>
+            <select id="building-category">
+              <option value="1122">Multi-family house</option>
+              <option value="1121">Detached house</option>
+              <option value="1110">Single-family house</option>
+              <option value="12xx">Office/Public</option>
+            </select>
+          </div>
+          <div>
+            <label for="coverage-option">Coverage</label>
+            <select id="coverage-option">
+              <option value="full">Full coverage</option>
+              <option value="automatic" selected>Automatic layout</option>
+              <option value="low">Low coverage</option>
+            </select>
+          </div>
+          <div>
+            <label for="facade-view">Image view</label>
+            <select id="facade-view">
+              <option value="perspective">Perspective</option>
+              <option value="rectified">Rectified</option>
+            </select>
+          </div>
+        </div>
+        <p class="gallery-summary" id="gallery-summary" role="status" aria-live="polite"></p>
+        <div class="facade-gallery" id="facade-gallery"></div>
+        <noscript><p>Enable JavaScript to explore the facade examples.</p></noscript>
+        <p class="note">
+          Generated images illustrate potential retrofit designs.
+        </p>
+
+        <h3 class="energy-example-heading">Coverage strategies and estimated energy yield</h3>
+        <figure class="overview">
+          <img
+            src="assets/overview.png"
+            alt="Original facade and four retrofit options: largest compact layout, low, medium, and large coverage, with estimated annual energy production"
+            loading="lazy"
+          >
+          <figcaption>
+            Four retrofit strategies demonstrating different facade coverages.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- CITATION — published article metadata from Crossref. -->
+      <section class="section citation" id="citation">
+        <div class="citation-heading">
+          <div>
+            <h2>Citation</h2>
+          </div>
+          <button class="button" id="copy">Copy BibTeX <span>⧉</span></button>
+        </div>
+        <p class="citation-reference">
+          Duran, A., Waibel, C., Bickel, B., Armeni, I., &amp; Schlueter, A. (2027).
+          Automated facade solar retrofits using feed-forward 3D reconstruction and generative image editing.
+          <em>Automation in Construction, 193</em>, 107294.
+          <a href="https://doi.org/10.1016/j.autcon.2026.107294">doi:10.1016/j.autcon.2026.107294</a>
+        </p>
+        <pre><code id="bibtex">@article{duran2027image2bipv,
+  title = {Automated facade solar retrofits using feed-forward
+           3D reconstruction and generative image editing},
+  author = {Duran, Ayca and Waibel, Christoph and Bickel, Bernd
+            and Armeni, Iro and Schlueter, Arno},
+  journal = {Automation in Construction},
+  volume = {193},
+  pages = {107294},
+  year = {2027},
+  doi = {10.1016/j.autcon.2026.107294},
+  url = {https://doi.org/10.1016/j.autcon.2026.107294}
+}</code></pre>
+        <p id="copy-status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+
+    <!-- FOOTER — project and source repository. -->
+    <footer>
+      <a class="brand" href="#">image<span>2</span>bipv</a>
+      <a href="https://github.com/ycdrn/image2bipv">GitHub ↗</a>
+    </footer>
+    <script src="gallery-data.js"></script>
+    <script src="script.js">
+    </script>
+  </body>
+</html>
