@@ -80,6 +80,12 @@ function galleryFigure(path, caption, alt, isOriginal = false) {
     }, { once: true });
     link.append(img);
     frame.append(link);
+    if (isOriginal) {
+      const credit = document.createElement('span');
+      credit.className = 'image-credit';
+      credit.textContent = '© Google';
+      frame.append(credit);
+    }
   } else {
     const message = document.createElement('p');
     message.className = 'facade-unavailable';

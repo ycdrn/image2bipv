@@ -189,3 +189,17 @@ footer p, footer > a:last-child { font-size: 11px; color: var(--muted); }
 .method-figure > a { display: block; cursor: zoom-in; }
 .method-figure img { display: block; width: 100%; height: auto; }
 .method-figure figcaption { margin-top: 16px; font-size: 13px; line-height: 1.8; color: #555; }
+
+/* Source attribution stays upright when original photographs are mirrored. */
+.facade-image-frame { position: relative; }
+.image-credit {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  padding: 0;
+  background: none;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.5;
+  pointer-events: none;
+}
